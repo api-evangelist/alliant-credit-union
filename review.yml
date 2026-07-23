@@ -1,0 +1,88 @@
+aid: alliant-credit-union
+name: Alliant Credit Union
+review:
+  question: Does Alliant Credit Union expose a public first-party developer API, developer portal, or documented open-finance (FDX / 1033) data-access API?
+  answer: false
+  date: '2026-07-23'
+  reviewer: API Evangelist
+findings:
+  summary: |
+    Alliant Credit Union publishes no public first-party developer API and no
+    developer portal. Alliant is a federally chartered, NCUA-regulated,
+    member-owned credit union (formerly the United Airlines Employees' Credit
+    Union) headquartered in Chicago, and operates as a digital-first,
+    branchless institution. It has no documented API products, no downloadable
+    OpenAPI/Swagger specification, and no public GitHub organization.
+
+    Probes of the candidate developer/API hostnames returned no genuine API
+    surface: developer.alliantcreditunion.com and api.alliantcreditunion.com
+    resolve to Cloudflare wildcard catch-alls (developer -> HTTP 403,
+    api -> HTTP 404, both generic Cloudflare responses rather than a portal).
+    The primary domain alliantcreditunion.com (HTTP 301/302) redirects to
+    www.alliantcreditunion.org, which is served behind a web application
+    firewall returning HTTP 403 to non-browser clients on every path,
+    including probed /developers and /api paths (which do not exist as
+    distinct pages). https://github.com/alliantcreditunion returns HTTP 404.
+
+    Consistent with the U.S. open-finance model (voluntary and fragmented,
+    not a mandated open-banking contract as in the UK/AU), Alliant exposes
+    member financial data only through consumer-permissioned third-party
+    aggregators (Plaid, MX, Finicity, Akoya) rather than a first-party API.
+    No documented Financial Data Exchange (FDX) participation and no published
+    CFPB Section 1033 data-access posture were located at bootstrap time; none
+    is asserted here to avoid fabrication. This is an honest identity-only
+    record with no public API surface.
+  posture:
+    firstPartyDeveloperPortal: false
+    downloadableSpec: false
+    openapiHarvested: false
+    fdxParticipant: unknown
+    section1033Posture: unknown
+    aggregatorAccessOnly: true
+    aggregators:
+      - Plaid
+      - MX
+      - Finicity
+      - Akoya
+    authModel: none-documented
+    specProvenance: none
+    coreProviderPublicApi: false
+  transports:
+    - protocol: REST
+      documented: false
+      note: No public first-party REST API is documented.
+    - protocol: FDX
+      documented: false
+      note: No documented FDX-conformant data-access API located. FDX spec is member-gated and not fabricated here.
+  probes:
+    - url: https://developer.alliantcreditunion.com/
+      status: 403
+      note: Cloudflare wildcard catch-all (resolves to Cloudflare CDN, generic 403). Not a real developer portal.
+    - url: https://api.alliantcreditunion.com/
+      status: 404
+      note: Cloudflare wildcard catch-all (generic 404). No API surface.
+    - url: https://www.alliantcreditunion.com/
+      status: 403
+      note: Redirects to https://www.alliantcreditunion.org/; WAF returns 403 to non-browser clients.
+    - url: https://www.alliantcreditunion.org/
+      status: 403
+      note: Canonical homepage behind a web application firewall (403 to non-browser clients); genuine site.
+    - url: https://developer.alliantcreditunion.org/
+      status: 000
+      note: Does not resolve (no such host).
+    - url: https://api.alliantcreditunion.org/
+      status: 000
+      note: Does not resolve (no such host).
+    - url: https://github.com/alliantcreditunion
+      status: 404
+      note: No public GitHub organization.
+    - url: https://www.linkedin.com/company/alliant-credit-union
+      status: 200
+      note: Corporate LinkedIn page confirmed live.
+sources:
+  - url: https://www.alliantcreditunion.org/
+    type: Website
+    note: Canonical corporate homepage (alliantcreditunion.com redirects here); WAF-protected.
+  - url: https://www.linkedin.com/company/alliant-credit-union
+    type: LinkedIn
+    note: Confirmed live (HTTP 200).

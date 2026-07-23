@@ -1,0 +1,38 @@
+aid: alliant-credit-union
+url: https://raw.githubusercontent.com/api-evangelist/alliant-credit-union/refs/heads/main/apis.yml
+name: Alliant Credit Union
+kind: company
+description: >-
+  Alliant Credit Union is a federally chartered, member-owned credit union
+  headquartered in Chicago, Illinois, regulated by the National Credit Union
+  Administration (NCUA). Founded in 1935 as the United Airlines Employees'
+  Credit Union and rebranded Alliant in 2003, it is one of the largest credit
+  unions in the United States, with more than 800,000 members and over $19
+  billion in assets. Alliant operates as a digital-first, branchless
+  institution offering consumer and commercial deposit accounts, high-yield
+  savings and checking, credit cards, auto and home loans, and business
+  banking. Like nearly all U.S. credit unions, Alliant publishes no public
+  first-party developer API or developer portal; consumer-permissioned data
+  access is available to members only through third-party aggregators (Plaid,
+  MX, Finicity, Akoya) rather than a directly documented open-finance API.
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+tags:
+- Financial Services
+- Banking
+- United States
+- Credit Union
+- Open Finance
+- Data Aggregation
+- Consumer Banking
+created: '2026-07-23'
+modified: '2026-07-23'
+specificationVersion: '0.19'
+apis: []
+common:
+- type: Website
+  url: https://www.alliantcreditunion.org/
+- type: LinkedIn
+  url: https://www.linkedin.com/company/alliant-credit-union
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com
